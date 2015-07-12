@@ -24,4 +24,13 @@ add2ints PROC
 	pop ebp
 	ret
 add2ints ENDP
+
+ptrtest PROC
+	push ebp
+	mov ebp,esp
+	mov eax, [ebp]+8;
+	mov eax,[eax]
+	pop ebp
+ret
+ptrtest ENDP
 END 
