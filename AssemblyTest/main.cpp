@@ -1,4 +1,5 @@
 #include<iostream>
+#include "comparisons.h"
 
 using namespace std;
 
@@ -18,7 +19,10 @@ int main()
 	cout << "Enter x2: ";
 	cin >> x2;
 
+	cout << "----------------------ASSEMBLY---------------------";
 	cout << x1 << " + " << x2 << " = " << add2ints(x1, x2) << endl;
+	cout << "---------------------C++---------------------------";
+	cout << x1 << " + " << x2 << " = " << cadd2ints(x1, x2) << endl;
 
 	return EXIT_SUCCESS;
 }

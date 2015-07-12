@@ -64,6 +64,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="comparisons.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -71,6 +72,9 @@
   </ItemGroup>
   <ItemGroup>
     <Object Include="testassembly.obj" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="comparisons.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
