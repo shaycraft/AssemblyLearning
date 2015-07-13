@@ -14,8 +14,10 @@ void circular_buffer::set_capacity(int n)
 		delete buff;
 	}
 
-	capacity = n;
-	buff = new int[n];
+	capacity = n+1;
+	buff = new int[n+1];
+	start_idx = 0;
+	end_idx = 0;
 }
 
 void circular_buffer::print() {
