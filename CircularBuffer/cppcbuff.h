@@ -17,6 +17,8 @@ private:
 	int capacity = 0;
 	int *buff = NULL;
 	int start_idx, end_idx = 0;
+	bool wasLastWrite;
+	bool isFull();
 };
 
 #endif

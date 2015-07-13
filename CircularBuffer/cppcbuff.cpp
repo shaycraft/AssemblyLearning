@@ -4,7 +4,7 @@
 using namespace std;
 
 circular_buffer::circular_buffer() {
-
+	wasLastWrite = false;
 }
 
 void circular_buffer::set_capacity(int n)
@@ -14,18 +14,37 @@ void circular_buffer::set_capacity(int n)
 		delete buff;
 	}
 
-	capacity = n+1;
-	buff = new int[n+1];
+	capacity = n;
+	buff = new int[n];
 	start_idx = 0;
 	end_idx = 0;
 }
 
 void circular_buffer::print() {
-	int len = ((capacity - start_idx) + end_idx) % capacity;
+	int len;
+	if (isFull())
+	{
+		len = capacity;
+	}
+	else
+	{
+		len = ((capacity - start_idx) + end_idx) % capacity;
+	}
 	for (int i = 0; i < len; i++) {
 		cout << buff[((i + start_idx)) % capacity] << " - ";
 	}
 	cout << endl;
+}
+
+bool circular_buffer::isFull()
+{
+	if ((start_idx == end_idx) && wasLastWrite) {
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 void circular_buffer::enqueue(int x)
@@ -36,11 +55,13 @@ void circular_buffer::enqueue(int x)
 	}*/
 
 	buff[end_idx] = x;
-	end_idx = (end_idx + 1) % capacity;
-	if (end_idx == start_idx)
+	if (!isFull())
 	{
-		end_idx = capacity + 1;
+
+		end_idx = (end_idx + 1) % capacity;
 	}
+
+	wasLastWrite = true;
 }
 
 int circular_buffer::dequeue()
