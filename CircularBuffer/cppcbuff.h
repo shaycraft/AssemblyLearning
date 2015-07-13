@@ -19,6 +19,7 @@ private:
 	int start_idx, end_idx = 0;
 	bool wasLastWrite;
 	bool isFull();
+	int calcNextIdx(int idx, int change);
 };
 
 #endif

@@ -34,6 +34,7 @@ void circular_buffer::print() {
 		cout << buff[((i + start_idx)) % capacity] << " - ";
 	}
 	cout << endl;
+	cout << "DEBUG: start_idx = " << start_idx << ", end_idx = " << end_idx << endl;
 }
 
 bool circular_buffer::isFull()
@@ -47,31 +48,30 @@ bool circular_buffer::isFull()
 	}
 }
 
+int circular_buffer::calcNextIdx(int idx, int change)
+{
+	return (idx + change) % capacity;
+}
+
 void circular_buffer::enqueue(int x)
 {
-	/*if ((end_idx + 1) % capacity == start_idx)
-	{
-	dequeue();
-	}*/
-
 	buff[end_idx] = x;
-	if (!isFull())
+	if (isFull())
 	{
-
-		end_idx = (end_idx + 1) % capacity;
+		dequeue();
 	}
+
+	end_idx = calcNextIdx(end_idx, 1);
 
 	wasLastWrite = true;
 }
 
 int circular_buffer::dequeue()
 {
-	if (start_idx == end_idx) {
-		cout << "ERROR: ------ Cannot dequeue when buffer is empty.\n";
-		return NULL;
-	}
+
 	int x = buff[start_idx];
 	start_idx = (start_idx + 1) % capacity;
+	wasLastWrite = false;
 	return x;
 }
 
