@@ -1,22 +1,7 @@
 #include<iostream>
+#include "cppcbuff.h"
 
 using namespace std;
-
-class circular_buffer
-{
-public:
-	circular_buffer();
-	void print_menu();
-	int menu_input();
-	void set_capacity(int n);
-	void enqueue(int n);
-	int dequeue();
-	void print();
-private:
-	int capacity = 0;
-	int *buff = NULL;
-	int start_idx, end_idx = 0;
-};
 
 circular_buffer::circular_buffer() {
 
@@ -45,7 +30,7 @@ void circular_buffer::enqueue(int x)
 {
 	/*if ((end_idx + 1) % capacity == start_idx)
 	{
-		dequeue();
+	dequeue();
 	}*/
 
 	buff[end_idx] = x;
@@ -86,35 +71,4 @@ int circular_buffer::menu_input() {
 	cin >> choice;
 
 	return choice;
-}
-
-int main()
-{
-	circular_buffer buff;
-	int capacity = 0;
-	int input_elem;
-	int choice;
-
-	cout << "Enter buffer capacity: ";
-	cin >> capacity;
-	buff.set_capacity(capacity);
-
-	while ((choice = buff.menu_input()) != 0)
-	{
-		switch (choice) {
-		case 1:
-			cout << "Enter new capacity: ";
-			cin >> capacity;
-			buff.set_capacity(capacity);
-			break;
-		case 2:
-			cout << "Enter value: ";
-			cin >> input_elem;
-			buff.enqueue(input_elem);
-			break;
-		}
-		buff.print();
-	}
-
-	return 0;
 }
