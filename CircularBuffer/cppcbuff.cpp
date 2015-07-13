@@ -18,6 +18,7 @@ void circular_buffer::set_capacity(int n)
 	buff = new int[n];
 	start_idx = 0;
 	end_idx = 0;
+	wasLastWrite = false;
 }
 
 void circular_buffer::print() {
