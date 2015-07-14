@@ -69,6 +69,10 @@ void circular_buffer::enqueue(int x)
 
 int circular_buffer::dequeue()
 {
+	if ((start_idx == end_idx) && !wasLastWrite)
+	{
+		return NULL;
+	}
 
 	int x = buff[start_idx];
 	start_idx = calcNextIdx(start_idx, 1);
