@@ -29,6 +29,9 @@ int main()
 			cin >> input_elem;
 			buff.enqueue(input_elem);
 			break;
+		case 3:
+			cout << "Removed " << buff.dequeue() << endl;
+			break;
 		}
 		buff.print();
 	}

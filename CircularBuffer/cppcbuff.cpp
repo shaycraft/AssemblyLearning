@@ -71,7 +71,7 @@ int circular_buffer::dequeue()
 {
 
 	int x = buff[start_idx];
-	start_idx = (start_idx + 1) % capacity;
+	start_idx = calcNextIdx(start_idx, 1);
 	wasLastWrite = false;
 	return x;
 }
