@@ -2,6 +2,22 @@
 
 using namespace std;
 
+extern "C" {
+	bool isFull(int start_idx, int end_idx, bool wasLastWrite);
+}
+
+//bool isFull(int start_idx, int end_idx, bool wasLastWrite)
+//{
+//	// TODO, rewrite this in assembly
+//	if ((start_idx == end_idx) && wasLastWrite) {
+//		return true;
+//	}
+//	else
+//	{
+//		return false;
+//	}
+//}
+
 void print_menu()
 {
 	cout << "------- MENU --------" << endl;
@@ -12,27 +28,12 @@ void print_menu()
 	cout << "0.  Exit\n";
 }
 
-int *buffer;
-
-
 int menu_input() {
 	print_menu();
 	int choice;
 	cin >> choice;
 
 	return choice;
-}
-
-bool isFull(int start_idx, int end_idx, bool wasLastWrite)
-{
-	// TODO, rewrite this in assembly
-	if ((start_idx == end_idx) && wasLastWrite) {
-		return true;
-	}
-	else
-	{
-		return false;
-	}
 }
 
 void print(int *buff, int start_idx, int end_idx, int capacity, bool wasLastWrite) {
@@ -61,9 +62,12 @@ int main()
 	int start_idx = 0, end_idx = 0;
 	bool wasLastWrite = false;
 
+	cout << "Value of isFull = " << isFull(100, 100, false) << endl;
+
 	cout << "Enter buffer capacity: ";
 	cin >> capacity;
 	buff = new int[capacity];
+
 
 	while ((choice = menu_input()) != 0)
 	{
