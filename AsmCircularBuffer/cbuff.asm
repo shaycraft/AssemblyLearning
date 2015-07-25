@@ -11,15 +11,20 @@ isFull PROC
 	
 	mov eax,[ebp+8]
 	mov ebx,[ebp+12]
+	xor ecx, ecx
+	mov ecx,[ebp+16]
 
 	sub eax,ebx
-	jz ISTRUE
+	jz CHKISLASTWRITE
 	jmp ISFALSE
 
+	CHKISLASTWRITE: mov eax,1
+	sub ecx,1
+	jz ISTRUE
+	jmp ISFALSE
 	ISTRUE: mov eax,1
 	jmp CONT
 	ISFALSE: mov eax,0
-
 
 	CONT: pop ebp
 	ret

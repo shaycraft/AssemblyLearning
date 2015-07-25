@@ -62,7 +62,7 @@ int main()
 	int start_idx = 0, end_idx = 0;
 	bool wasLastWrite = false;
 
-	cout << "Value of isFull = " << isFull(100, 100, false) << endl;
+	cout << "Value of isFull = " << isFull(100, 101, true) << endl;
 
 	cout << "Enter buffer capacity: ";
 	cin >> capacity;
