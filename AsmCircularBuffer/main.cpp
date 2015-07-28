@@ -4,6 +4,7 @@ using namespace std;
 
 extern "C" {
 	bool isFull(int start_idx, int end_idx, bool wasLastWrite);
+	int calcNextIdx(int idx, int change, int capacity);
 }
 
 //bool isFull(int start_idx, int end_idx, bool wasLastWrite)
@@ -63,6 +64,9 @@ int main()
 	bool wasLastWrite = false;
 
 	cout << "Value of isFull = " << isFull(100, 101, true) << endl;
+	cout << "Value of calcNextIdx (20 ,3, 25) = " << calcNextIdx(20, 3, 25) << endl;
+	cout << "Value of calcNextIdx (18 ,2, 19) = " << calcNextIdx(18, 2, 19) << endl;
+
 
 	cout << "Enter buffer capacity: ";
 	cin >> capacity;

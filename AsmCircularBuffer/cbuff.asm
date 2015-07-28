@@ -30,4 +30,19 @@ isFull PROC
 	ret
 isFull ENDP 
 
+calcNextIdx PROC
+	push ebp
+	mov ebp, esp
+	xor dx,dx
+	mov eax,[ebp+8]
+	mov ebx,[ebp+12]
+	add eax,ebx
+	mov ebx,[ebp+16]
+	idiv ebx
+	mov eax,edx
+
+	pop ebp
+	ret
+calcNextIdx ENDP
+
 END 
