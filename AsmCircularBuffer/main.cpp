@@ -2,22 +2,29 @@
 
 using namespace std;
 
+int capacity = 0;
+int *buff = NULL;
+int start_idx, end_idx = 0;
+bool wasLastWrite;
+
 extern "C" {
 	bool isFull(int start_idx, int end_idx, bool wasLastWrite);
 	int calcNextIdx(int idx, int change, int capacity);
+	int *enqueue(int *buff, int x, int start_idx, int end_idx, bool wasLastWrite);
 }
 
-//bool isFull(int start_idx, int end_idx, bool wasLastWrite)
-//{
-//	// TODO, rewrite this in assembly
-//	if ((start_idx == end_idx) && wasLastWrite) {
-//		return true;
-//	}
-//	else
-//	{
-//		return false;
-//	}
-//}
+void set_capacity(int n) {
+	if (buff)
+	{
+		delete buff;
+	}
+
+	capacity = n;
+	buff = new int[n];
+	start_idx = 0;
+	end_idx = 0;
+	wasLastWrite = false;
+}
 
 void print_menu()
 {
@@ -72,23 +79,28 @@ int main()
 	cin >> capacity;
 	buff = new int[capacity];
 
-
+	int *temp = NULL;
 	while ((choice = menu_input()) != 0)
 	{
 		switch (choice) {
 		case 1:
 			cout << "Enter new capacity: ";
 			cin >> capacity;
-			//buff.set_capacity(capacity);
+			set_capacity(capacity);
 			break;
 		case 2:
 			cout << "Enter value: ";
 			cin >> input_elem;
-			//buff.enqueue(input_elem);
+			temp = enqueue(buff, input_elem, start_idx, end_idx, wasLastWrite);
+			end_idx = calcNextIdx(end_idx, 1, capacity);
+			cout << temp;
 			break;
 		case 3:
 			//cout << "Removed " << buff.dequeue() << endl;
 			break;
+		case 4:
+			cout << buff;
+			print(buff, start_idx, end_idx, capacity, wasLastWrite);
 		}
 		print(buff, start_idx, end_idx, capacity, wasLastWrite);
 	}

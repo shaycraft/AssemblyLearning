@@ -45,4 +45,20 @@ calcNextIdx PROC
 	ret
 calcNextIdx ENDP
 
+enqueue PROC
+	push ebp
+	mov ebp, esp
+	
+	mov ecx,[ebp+8] ; move value of buff
+	mov eax,[ebp+20] ; end_idx = ebx
+	mov ebx,4
+	mul ebx			;eax = buff+4*end_idx
+	add eax, ecx
+	mov ebx,[ebp+12] ;ebx = x
+	mov [eax], ebx   ; buff[end_idx] = x
+	
+	pop ebp
+	ret
+enqueue ENDP
+
 END 
