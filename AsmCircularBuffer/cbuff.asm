@@ -1,4 +1,4 @@
-.586              ;Target processor.  Use instructions for Pentium class machines
+.686              ;Target processor.  Use instructions for Pentium class machines
 .MODEL FLAT, C    ;Use the flat memory model. Use C calling conventions
 .STACK            ;Define a stack segment of 1KB (Not required for this example)
 .DATA             ;Create a near data segment.  Local variables are declared after
@@ -49,8 +49,9 @@ enqueue PROC
 	push ebp
 	mov ebp, esp
 	
-	mov ecx,[ebp+8] ; move value of buff
-	mov eax,[ebp+20] ; end_idx = ebx
+	mov ecx, [ebp+8] ; move value of buff
+	mov esi, [ebp+20]
+	mov eax, [esi] ; end_idx = ebx
 	mov ebx,4
 	mul ebx			;eax = buff+4*end_idx
 	add eax, ecx

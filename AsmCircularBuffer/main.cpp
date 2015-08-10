@@ -10,7 +10,7 @@ bool wasLastWrite;
 extern "C" {
 	bool isFull(int start_idx, int end_idx, bool wasLastWrite);
 	int calcNextIdx(int idx, int change, int capacity);
-	int *enqueue(int *buff, int x, int start_idx, int end_idx, bool wasLastWrite);
+	int *enqueue(int *buff, int x, int start_idx, int *end_idx, bool wasLastWrite);
 }
 
 void set_capacity(int n) {
@@ -91,7 +91,7 @@ int main()
 		case 2:
 			cout << "Enter value: ";
 			cin >> input_elem;
-			temp = enqueue(buff, input_elem, start_idx, end_idx, wasLastWrite);
+			temp = enqueue(buff, input_elem, start_idx, &end_idx, wasLastWrite);
 			end_idx = calcNextIdx(end_idx, 1, capacity);
 			cout << temp;
 			break;
