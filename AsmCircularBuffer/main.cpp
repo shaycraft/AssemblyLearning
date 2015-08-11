@@ -10,7 +10,7 @@ bool wasLastWrite;
 extern "C" {
 	bool isFull(int start_idx, int end_idx, bool wasLastWrite);
 	int calcNextIdx(int idx, int change, int capacity);
-	int enqueue(int *buff, int x, int start_idx, int *end_idx, bool wasLastWrite, int capacity);
+	void enqueue(int *buff, int x, int start_idx, int *end_idx, bool *wasLastWrite, int capacity);
 }
 
 void set_capacity(int n) {
@@ -58,7 +58,16 @@ void print(int *buff, int start_idx, int end_idx, int capacity, bool wasLastWrit
 		cout << buff[((i + start_idx)) % capacity] << " - ";
 	}
 	cout << endl;
-	cout << "DEBUG: start_idx = " << start_idx << ", end_idx = " << end_idx << endl;
+	//cout << "DEBUG: start_idx = " << start_idx << ", end_idx = " << end_idx << endl;
+}
+
+void print_debug()
+{
+	cout << "----------------- DEBUG --------------------" << endl;
+	cout << "start_idx = " << start_idx << endl;
+	cout << "end_idx = " << end_idx << endl;
+	cout << "wasLastWrite = " << wasLastWrite << endl;
+	cout << "--------------------------------------------" << endl;
 }
 
 int main()
@@ -66,19 +75,15 @@ int main()
 	int capacity = 0;
 	int input_elem;
 	int choice;
-	int *buff = NULL;
-	int start_idx = 0, end_idx = 0;
-	bool wasLastWrite = false;
 
-	cout << "Value of isFull = " << isFull(100, 101, true) << endl;
-	cout << "Value of calcNextIdx (20 ,3, 25) = " << calcNextIdx(20, 3, 25) << endl;
-	cout << "Value of calcNextIdx (18 ,2, 19) = " << calcNextIdx(18, 2, 19) << endl;
+	//cout << "Value of isFull = " << isFull(100, 101, true) << endl;
+	//cout << "Value of calcNextIdx (20 ,3, 25) = " << calcNextIdx(20, 3, 25) << endl;
+	//cout << "Value of calcNextIdx (18 ,2, 19) = " << calcNextIdx(18, 2, 19) << endl;
 
 
 	cout << "Enter buffer capacity: ";
 	cin >> capacity;
 	buff = new int[capacity];
-	int cap_tmp = 0;
 
 	int *temp = NULL;
 	while ((choice = menu_input()) != 0)
@@ -92,8 +97,7 @@ int main()
 		case 2:
 			cout << "Enter value: ";
 			cin >> input_elem;
-			cap_tmp = enqueue(buff, input_elem, start_idx, &end_idx, wasLastWrite, capacity);
-			cout << "cap_temp = " << cap_tmp << endl;
+			enqueue(buff, input_elem, start_idx, &end_idx, &wasLastWrite, capacity);
 			//end_idx = calcNextIdx(end_idx, 1, capacity);
 			break;
 		case 3:
@@ -104,5 +108,6 @@ int main()
 			print(buff, start_idx, end_idx, capacity, wasLastWrite);
 		}
 		print(buff, start_idx, end_idx, capacity, wasLastWrite);
+		print_debug();
 	}
 }

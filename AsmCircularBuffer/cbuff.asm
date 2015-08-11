@@ -67,13 +67,14 @@ enqueue PROC
 	mov eax, [esi]
 	push eax
 	call calcNextIdx
-	mov edi, [ebp+20]
-	mov [edi], eax
-	
-	pop	ebx
-	pop	ebx
-	pop	ebx
-	pop eax
+	mov esi, [ebp+20]
+	mov [esi], eax
+	add esp,16   ; clear stack aguments
+
+	; set wasLastWrite to true
+	mov esi, [ebp+24]
+	mov edi,1
+	mov [esi], edi
 
 	pop ebp
 	ret
