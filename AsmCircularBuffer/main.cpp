@@ -10,7 +10,7 @@ bool wasLastWrite;
 extern "C" {
 	bool isFull(int start_idx, int end_idx, bool wasLastWrite);
 	int calcNextIdx(int idx, int change, int capacity);
-	int *enqueue(int *buff, int x, int start_idx, int *end_idx, bool wasLastWrite);
+	int enqueue(int *buff, int x, int start_idx, int *end_idx, bool wasLastWrite, int capacity);
 }
 
 void set_capacity(int n) {
@@ -78,6 +78,7 @@ int main()
 	cout << "Enter buffer capacity: ";
 	cin >> capacity;
 	buff = new int[capacity];
+	int cap_tmp = 0;
 
 	int *temp = NULL;
 	while ((choice = menu_input()) != 0)
@@ -91,9 +92,9 @@ int main()
 		case 2:
 			cout << "Enter value: ";
 			cin >> input_elem;
-			temp = enqueue(buff, input_elem, start_idx, &end_idx, wasLastWrite);
-			end_idx = calcNextIdx(end_idx, 1, capacity);
-			cout << temp;
+			cap_tmp = enqueue(buff, input_elem, start_idx, &end_idx, wasLastWrite, capacity);
+			cout << "cap_temp = " << cap_tmp << endl;
+			//end_idx = calcNextIdx(end_idx, 1, capacity);
 			break;
 		case 3:
 			//cout << "Removed " << buff.dequeue() << endl;

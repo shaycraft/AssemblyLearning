@@ -57,7 +57,24 @@ enqueue PROC
 	add eax, ecx
 	mov ebx,[ebp+12] ;ebx = x
 	mov [eax], ebx   ; buff[end_idx] = x
+
+	; call calcNextIdx, end_idx, 1, capacity
+	mov eax, [ebp+28]
+	push eax
+	push eax
+	mov eax,1
+	push eax
+	mov eax, [esi]
+	push eax
+	call calcNextIdx
+	mov edi, [ebp+20]
+	mov [edi], eax
 	
+	pop	ebx
+	pop	ebx
+	pop	ebx
+	pop eax
+
 	pop ebp
 	ret
 enqueue ENDP
