@@ -5,7 +5,7 @@ using namespace std;
 int capacity = 0;
 int *buff = NULL;
 int start_idx, end_idx = 0;
-bool wasLastWrite;
+bool wasLastWrite = false;
 
 extern "C" {
 	bool isFull(int start_idx, int end_idx, bool wasLastWrite);

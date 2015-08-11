@@ -95,7 +95,8 @@ dequeue PROC
 	jmp MAIN_CONT
 
 	START_EQ_END:
-	mov esi, [ebp+16]
+	mov esi, [ebp+12]
+	mov eax, [esi]
 	mov ebx, 0
 	sub eax,ebx
 	jz RET_NULL
