@@ -11,6 +11,7 @@ extern "C" {
 	bool isFull(int start_idx, int end_idx, bool wasLastWrite);
 	int calcNextIdx(int idx, int change, int capacity);
 	void enqueue(int *buff, int x, int start_idx, int *end_idx, bool *wasLastWrite, int capacity);
+	int dequeue(int *buff, int *start_idx, int end_idx, bool *wasLastWrite, int capacity);
 }
 
 void set_capacity(int n) {
@@ -76,9 +77,9 @@ int main()
 	int input_elem;
 	int choice;
 
-	//cout << "Value of isFull = " << isFull(100, 101, true) << endl;
-	//cout << "Value of calcNextIdx (20 ,3, 25) = " << calcNextIdx(20, 3, 25) << endl;
-	//cout << "Value of calcNextIdx (18 ,2, 19) = " << calcNextIdx(18, 2, 19) << endl;
+	cout << "Value of isFull = " << isFull(100, 101, true) << endl;
+	cout << "Value of calcNextIdx (20 ,3, 25) = " << calcNextIdx(20, 3, 25) << endl;
+	cout << "Value of calcNextIdx (18 ,2, 19) = " << calcNextIdx(18, 2, 19) << endl;
 
 
 	cout << "Enter buffer capacity: ";
@@ -101,7 +102,7 @@ int main()
 			//end_idx = calcNextIdx(end_idx, 1, capacity);
 			break;
 		case 3:
-			//cout << "Removed " << buff.dequeue() << endl;
+			cout << "Removed " << dequeue(buff, &start_idx, end_idx, &wasLastWrite, capacity) << endl;
 			break;
 		case 4:
 			cout << buff;
