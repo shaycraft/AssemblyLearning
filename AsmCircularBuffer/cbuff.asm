@@ -110,7 +110,6 @@ dequeue PROC
 	mul ebx
 	mov esi,[ebp]
 	add esi,eax
-
 	mov eax,[esi]
 
 	jmp END_CONT
