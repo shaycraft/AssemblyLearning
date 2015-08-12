@@ -110,7 +110,23 @@ dequeue PROC
 	mul ebx
 	mov esi,[ebp]
 	add esi,eax
+	mov edx,[esi]  ; save buff[start_idx] in edx
+
+	;  increment start_idx
+	mov eax, [ebp+16]
+	push eax
+	mov eax,1
+	push eax
+	mov esi,[ebp+4]
 	mov eax,[esi]
+	push eax
+	call calcNextIdx
+	add esp,12
+	mov edi,eax
+	mov esi,[ebp+4]
+	mov [esi],edi
+
+	mov eax,edx
 
 	jmp END_CONT
 
