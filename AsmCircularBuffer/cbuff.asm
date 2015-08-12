@@ -103,7 +103,15 @@ dequeue PROC
 
 	MAIN_CONT:
 
-	mov eax, 42
+	; assign buff[start_idx]
+	mov esi,[ebp+4]
+	mov eax, [esi]
+	mov ebx,4
+	mul ebx
+	mov esi,[ebp]
+	add esi,eax
+
+	mov eax,[esi]
 
 	jmp END_CONT
 
@@ -115,42 +123,5 @@ dequeue PROC
 	pop ebp
 	ret
 dequeue ENDP
-
-dequeue_tmp PROC
-	push ebp
-	mov ebp,esp
-
-	; check if empty list
-	mov esi,[ebp+12]
-	mov eax,[esi]
-	mov ebx,[ebp+16]
-	sub eax,ebx
-	jz START_EQ_END
-	jmp MAIN_CONT
-
-	START_EQ_END: mov esi, [ebp+24]
-	mov eax, [esi]
-	mov ebx, 0
-	sub eax,ebx
-	jz RET_NULL
-
-	; main block
-	MAIN_CONT: 
-
-	;mov eax, [ebp+12] ; start_idx
-	;mov esi, 4
-	;mul esi
-	;mov esi,eax
-	;mov edi,[ebp+8]
-	;add edi,esi
-	;mov eax,[edi]
-
-	jmp END_CONT
-	
-	RET_NULL:  mov eax,0
-	
-	END_CONT: pop ebp
-	ret
-dequeue_tmp ENDP
 
 END 

@@ -103,6 +103,7 @@ int main()
 			break;
 		case 3:
 			cout << "Removed " << dequeue(buff, &start_idx, end_idx, &wasLastWrite, capacity) << endl;
+			cout << "DEBUG:  buff addr = " << (int)buff << endl;
 			break;
 		case 4:
 			cout << buff;
