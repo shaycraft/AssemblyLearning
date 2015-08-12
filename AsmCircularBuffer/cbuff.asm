@@ -126,6 +126,11 @@ dequeue PROC
 	mov esi,[ebp+4]
 	mov [esi],edi
 
+	; set last write to false
+	mov esi,[ebp+12]
+	xor edi,edi
+	mov [esi],edi
+
 	mov eax,edx
 
 	jmp END_CONT
