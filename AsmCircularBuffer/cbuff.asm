@@ -58,6 +58,35 @@ enqueue PROC
 	mov ebx,[ebp+12] ;ebx = x
 	mov [eax], ebx   ; buff[end_idx] = x
 
+	; is full?
+	mov esi, [ebp+24]
+	mov eax,[esi]
+	push eax
+	mov esi, [ebp+20]
+	mov eax,[esi]
+	push eax
+	mov eax, [ebp+16]
+	push eax
+	call isFull
+	add esp,12
+	cmp eax,0
+	je CONT
+	; call dequeue
+	mov eax,[ebp+28]
+	push eax
+	mov eax,[ebp+24]
+	push eax
+	mov esi,[ebp+20]
+	mov eax,[esi]
+	push eax
+	mov eax,[ebp+32]
+	push eax
+	mov eax,[ebp+8]
+	push eax
+	call dequeue
+	add esp,20
+
+	CONT:	
 	; call calcNextIdx, end_idx, 1, capacity
 	mov eax, [ebp+28]
 	push eax
